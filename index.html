@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0097)file:///C:/Users/Proto%20Process%20Method/Downloads/MYCenter_Prep___Automatisation_BOM___PnP.html -->
+<!-- saved from url=(0034)https://ocomet.github.io/Methodes/ -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MYCenter Prep — Automatisation BOM + PnP</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="./MYCenter Prep — Automatisation BOM + PnP_files/xlsx.full.min.js.téléchargement"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
 
@@ -520,15 +520,13 @@
   <!-- Barre GSheet -->
   <div class="gsheet-bar" id="gsheet-bar">
     <div class="gsheet-status">
-      <div class="gsheet-dot loading" id="gsheet-dot"></div>
+      <div class="gsheet-dot ok" id="gsheet-dot"></div>
       <span class="gsheet-label">Base clients :</span>
-      <span class="gsheet-info" id="gsheet-info">Chargement...</span>
+      <span class="gsheet-info" id="gsheet-info">13 clients (GSheet à jour)</span>
     </div>
-    <div id="gsheet-badges" style="display:flex;gap:8px"></div>
+    <div id="gsheet-badges" style="display:flex;gap:8px"><div class="gsheet-client-badge">MINISTERE DES ARMEES</div></div>
     <button onclick="loadClientDB()" title="Rafraîchir depuis GSheet" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);cursor:pointer;padding:3px 8px;font-size:13px">↻</button>
-    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer">
-      <option value="">— Sélectionner client —</option>
-    </select>
+    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="MERIO">MERIO</option><option value="PFEIFFER">PFEIFFER</option><option value="SICPA">SICPA</option><option value="LOCATIS">LOCATIS ★</option><option value="SYNOPSIS">SYNOPSIS</option><option value="AMG">AMG</option><option value="VIAVI">VIAVI ★</option><option value="SEFRAM">SEFRAM ★</option><option value="RTSYS">RTSYS</option><option value="ILL">ILL</option><option value="HORIBA">HORIBA</option><option value="Proto Process">Proto Process</option></select>
   </div>
 
   <!-- Fichier BOM Luminovo -->
@@ -541,11 +539,11 @@
       <span class="drop-icon">📋</span>
       <div class="drop-hint"><strong>Glisser-déposer</strong> ou cliquer pour sélectionner</div>
       <div class="drop-hint" style="margin-top:4px">Formats acceptés : .xlsx, .ods, .csv</div>
-      <div class="filename" id="name-lumi">Luminovo-Sourcing_VIAVI_SOLUTIONS_PCBA_703100B145_2026-05-20_132312.ods</div>
+      <div class="filename" id="name-lumi">MINISTERE DES ARMEES BOM.csv</div>
     </div>
     <div class="stats-row" id="stats-lumi">
-      <div class="stat"><div class="stat-val" id="lumi-refs">55</div><div class="stat-lbl">Références</div></div>
-      <div class="stat"><div class="stat-val" id="lumi-desig">147</div><div class="stat-lbl">Désignateurs</div></div>
+      <div class="stat"><div class="stat-val" id="lumi-refs">42</div><div class="stat-lbl">Références</div></div>
+      <div class="stat"><div class="stat-val" id="lumi-desig">214</div><div class="stat-lbl">Désignateurs</div></div>
     </div>
   </div>
 
@@ -559,11 +557,11 @@
       <span class="drop-icon">📍</span>
       <div class="drop-hint"><strong>Glisser-déposer</strong> ou cliquer pour sélectionner</div>
       <div class="drop-hint" style="margin-top:4px">Format : .csv (séparateur tabulation)</div>
-      <div class="filename" id="name-cmp">p_p (1).csv</div>
+      <div class="filename" id="name-cmp">Pick_Place_for_1393-2_Not_mount_1393-2_ (1).csv</div>
     </div>
     <div class="stats-row" id="stats-cmp">
-      <div class="stat"><div class="stat-val" id="cmp-total">161</div><div class="stat-lbl">Composants</div></div>
-      <div class="stat"><div class="stat-val" id="cmp-smt">161</div><div class="stat-lbl">SMT (TOP+BOT)</div></div>
+      <div class="stat"><div class="stat-val" id="cmp-total">214</div><div class="stat-lbl">Composants</div></div>
+      <div class="stat"><div class="stat-val" id="cmp-smt">214</div><div class="stat-lbl">SMT (TOP+BOT)</div></div>
     </div>
   </div>
 
@@ -583,9 +581,9 @@
       <label><input type="checkbox" id="out-pnp" checked=""> Feuille PnP</label>
       <div class="option-desc">REF | IPN | PACKAGE | X | Y | Rot | Side</div>
       <label><input type="checkbox" id="out-cli" checked=""> Feuille PnP CLI (import MYCenter)</label>
-      <div class="option-desc">REF | IPN | X | Y | Rot | Side — sans entête</div>
+      <div class="option-desc">REF | IPN | PACKAGE | X | Y | Rot | Side — sans entête</div>
       <label><input type="checkbox" id="out-bom" checked=""> Feuille BOM PP</label>
-      <div class="option-desc">Designator | IPN | MPN | Package | Face | MAG</div>
+      <div class="option-desc">Designator | IPN | Package | MPN | Face | MAG</div>
     </div>
   </div>
 
@@ -604,10 +602,10 @@
     <h2 style="margin-bottom:16px">Traitement terminé</h2>
 
     <div class="results-grid">
-      <div class="result-stat"><div class="val ok" id="res-matched">1</div><div class="lbl">Composants matchés</div></div>
-      <div class="result-stat"><div class="val warn" id="res-unmatched">160</div><div class="lbl">Non matchés (sans IPN)</div></div>
+      <div class="result-stat"><div class="val ok" id="res-matched">214</div><div class="lbl">Composants matchés</div></div>
+      <div class="result-stat"><div class="val warn" id="res-unmatched">0</div><div class="lbl">Non matchés (sans IPN)</div></div>
       <div class="result-stat"><div class="val" id="res-filtered" style="color:var(--muted)">0</div><div class="lbl">Exclus (NC / THT)</div></div>
-      <div class="result-stat"><div class="val ok" id="res-pnp">307</div><div class="lbl">Lignes PnP CLI</div></div>
+      <div class="result-stat"><div class="val ok" id="res-pnp">214</div><div class="lbl">Lignes PnP CLI</div></div>
     </div>
 
     <div class="section-title">Télécharger</div>
@@ -627,7 +625,7 @@
       </div>
     </div>
 
-    <div class="log" id="log"><div class="log-line"><span class="log-time">16:06:58</span><span class="log-ok">Chargement : 161 composants centroïdes</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-ok">BOM Luminovo : 147 désignateurs</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-warn">Jointure : 1 matchés, 160 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-warn">146 composants Luminovo absents du CMP (MANQUANT CMP)</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-ok">PnP CLI : 307 lignes générées</span></div><div class="log-line"><span class="log-time">16:06:58</span><span class="log-ok">BOM PP : 1 références uniques</span></div></div>
+    <div class="log" id="log"><div class="log-line"><span class="log-time">14:52:22</span><span class="log-ok">Chargement : 214 composants centroïdes</span></div><div class="log-line"><span class="log-time">14:52:22</span><span class="log-ok">BOM Luminovo : 214 désignateurs</span></div><div class="log-line"><span class="log-time">14:52:22</span><span class="log-ok">Jointure : 214 matchés, 0 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">14:52:22</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">14:52:22</span><span class="log-ok">PnP CLI : 214 lignes générées</span></div><div class="log-line"><span class="log-time">14:52:22</span><span class="log-ok">BOM PP : 42 références uniques</span></div></div>
   </div>
 
 </main>
@@ -1321,7 +1319,7 @@ function runProcess() {
     pnpRows.push({ REF: ref, VAL: ipn, PACKAGE: pkg, PosX: r.x, PosY: r.y, Rot: r.rot, Side: face });
 
     // CLI ligne — REF | IPN | X | Y | Rot | Side (face uniquement)
-    cliRows.push([ref, ipn, r.x.toFixed(2), r.y.toFixed(2), r.rot, face]);
+    cliRows.push([ref, ipn, pkg, r.x.toFixed(2), r.y.toFixed(2), r.rot, face]);
 
     // BOM PP groupé par IPN (seulement si vrai IPN)
     if (ipn && ipn !== 'MANQUANT BOM') {
@@ -1337,7 +1335,7 @@ function runProcess() {
     if (!cmpRefs.has(ref)) {
       missingCMP++;
       pnpRows.push({ REF: ref, VAL: 'MANQUANT CMP', PACKAGE: bom.pkg, PosX: '', PosY: '', Rot: '', Side: '' });
-      cliRows.push([ref, 'MANQUANT CMP', '', '', '', '']);
+      cliRows.push([ref, 'MANQUANT CMP', '', '', '', '', '']);
       if (bom.ipn && bom.ipn !== '') {
         if (!bomPPMap[bom.ipn]) bomPPMap[bom.ipn] = { ipn: bom.ipn, mpn: bom.mpn, pkg: bom.pkg, mount: bom.mount, face: '', refs: [] };
         bomPPMap[bom.ipn].refs.push(ref);
@@ -1356,8 +1354,8 @@ function runProcess() {
     Designator: b.refs.join(', '),
     Qty: b.refs.length,
     'Internal part number': b.ipn,
-    MPN: b.mpn,
     Package: b.pkg,
+    MPN: b.mpn,
     Mounting: b.mount,
     MAG: '',
     FACE: b.face
