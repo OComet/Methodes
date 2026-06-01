@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)file:///C:/Users/Proto%20Process%20Method/Downloads/mycenter_prep.html -->
+<!-- saved from url=(0034)https://ocomet.github.io/Methodes/ -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MYCenter Prep — Automatisation BOM + PnP</title>
-<script src="./MYCenter Prep — Automatisation BOM + PnP_files/xlsx.full.min.js.téléchargement"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
 
@@ -522,11 +522,11 @@
     <div class="gsheet-status">
       <div class="gsheet-dot ok" id="gsheet-dot"></div>
       <span class="gsheet-label">Base clients :</span>
-      <span class="gsheet-info" id="gsheet-info">0 clients (GSheet à jour)</span>
+      <span class="gsheet-info" id="gsheet-info">16 clients (GSheet à jour)</span>
     </div>
     <div id="gsheet-badges" style="display:flex;gap:8px"><div class="gsheet-client-badge">VIAVI</div><div class="gsheet-mpn-badge">MPN STRICT</div></div>
     <button onclick="loadClientDB()" title="Rafraîchir depuis GSheet" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);cursor:pointer;padding:3px 8px;font-size:13px">↻</button>
-    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option></select>
+    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="MERIO">MERIO</option><option value="PFEIFFER">PFEIFFER</option><option value="SICPA">SICPA</option><option value="LOCATIS">LOCATIS ★</option><option value="SYNOPSIS">SYNOPSIS</option><option value="AMG">AMG</option><option value="VIAVI">VIAVI ★</option><option value="SEFRAM">SEFRAM ★</option><option value="RTSYS">RTSYS</option><option value="ILL">ILL</option><option value="HORIBA">HORIBA</option><option value="Proto Process">Proto Process</option><option value="ANNECY ELEC">ANNECY ELEC ★</option><option value="MICRO BEAM">MICRO BEAM</option><option value="CORDOUAN">CORDOUAN</option></select>
   </div>
 
   <!-- Fichier BOM Luminovo -->
@@ -625,7 +625,7 @@
       </div>
     </div>
 
-    <div class="log" id="log"><div class="log-line"><span class="log-time">10:34:10</span><span class="log-ok">Chargement : 161 composants centroïdes</span></div><div class="log-line"><span class="log-time">10:34:10</span><span class="log-ok">BOM Luminovo : 146 désignateurs</span></div><div class="log-line"><span class="log-time">10:34:10</span><span class="log-warn">Jointure : 146 matchés, 15 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">10:34:10</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">10:34:10</span><span class="log-ok">PnP CLI : 161 lignes générées</span></div><div class="log-line"><span class="log-time">10:34:10</span><span class="log-ok">BOM PP : 54 références uniques</span></div></div>
+    <div class="log" id="log"><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">Chargement : 161 composants centroïdes</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">BOM Luminovo : 146 désignateurs</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-warn">Jointure : 146 matchés, 15 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">PnP CLI : 161 lignes générées</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">BOM PP : 54 références uniques</span></div></div>
   </div>
 
 </main>
@@ -1586,3 +1586,4 @@ function setStep(n) {
 
 
 </body></html>
+ 
