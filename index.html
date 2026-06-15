@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)https://ocomet.github.io/Methodes/ -->
-<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MYCenter Prep — Automatisation BOM + PnP</title>
-<script src="./MYCenter Prep — Automatisation BOM + PnP_files/xlsx.full.min.js.téléchargement"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
 
@@ -505,13 +505,13 @@
 <div class="pipeline">
   <div class="step done" id="step1"><div class="step-dot"></div>Chargement fichiers</div>
   <div class="arrow"></div>
-  <div class="step done" id="step2"><div class="step-dot"></div>Jointure BOM ↔ CMP</div>
+  <div class="step active" id="step2"><div class="step-dot"></div>Jointure BOM ↔ CMP</div>
   <div class="arrow"></div>
-  <div class="step done" id="step3"><div class="step-dot"></div>Nettoyage &amp; filtrage</div>
+  <div class="step" id="step3"><div class="step-dot"></div>Nettoyage &amp; filtrage</div>
   <div class="arrow"></div>
-  <div class="step done" id="step4"><div class="step-dot"></div>Génération fichiers</div>
+  <div class="step" id="step4"><div class="step-dot"></div>Génération fichiers</div>
   <div class="arrow"></div>
-  <div class="step active" id="step5"><div class="step-dot"></div>Export</div>
+  <div class="step" id="step5"><div class="step-dot"></div>Export</div>
 </div>
 
 <main>
@@ -522,11 +522,11 @@
     <div class="gsheet-status">
       <div class="gsheet-dot ok" id="gsheet-dot"></div>
       <span class="gsheet-label">Base clients :</span>
-      <span class="gsheet-info" id="gsheet-info">23 clients (GSheet à jour)</span>
+      <span class="gsheet-info" id="gsheet-info">24 clients (données intégrées)</span>
     </div>
-    <div id="gsheet-badges" style="display:flex;gap:8px"><div class="gsheet-client-badge">PFEIFFER</div></div>
+    <div id="gsheet-badges" style="display:flex;gap:8px"><div class="gsheet-client-badge">MERIO</div></div>
     <button onclick="loadClientDB()" title="Rafraîchir depuis GSheet" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);cursor:pointer;padding:3px 8px;font-size:13px">↻</button>
-    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="AMG">AMG</option><option value="ANNECY ELEC">ANNECY ELEC ★</option><option value="ARCEL">ARCEL</option><option value="CEA CADARACHE">CEA CADARACHE</option><option value="CERN">CERN</option><option value="CORDOUAN">CORDOUAN</option><option value="HORIBA">HORIBA</option><option value="ILL">ILL</option><option value="INSAVALOR">INSAVALOR</option><option value="LAPP Annecy">LAPP Annecy</option><option value="LEM (CH)">LEM (CH)</option><option value="LEM TECH FR">LEM TECH FR</option><option value="LOCATIS">LOCATIS ★</option><option value="MERIO">MERIO</option><option value="MICRO BEAM">MICRO BEAM</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="PFEIFFER">PFEIFFER</option><option value="Proto Process">Proto Process</option><option value="RTSYS">RTSYS</option><option value="SEFRAM">SEFRAM ★</option><option value="SICPA">SICPA</option><option value="SYNOPSIS">SYNOPSIS</option><option value="VIAVI">VIAVI ★</option></select>
+    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="AMG">AMG</option><option value="ANNECY ELEC">ANNECY ELEC ★</option><option value="ARCEL">ARCEL</option><option value="CEA CADARACHE">CEA CADARACHE</option><option value="CERN">CERN</option><option value="CORDOUAN">CORDOUAN</option><option value="HORIBA">HORIBA</option><option value="ILL">ILL</option><option value="INSAVALOR">INSAVALOR</option><option value="LAPP Annecy">LAPP Annecy</option><option value="LEM (CH)">LEM (CH)</option><option value="LEM TECH FR">LEM TECH FR</option><option value="LEM TECH BULGARIE">LEM TECH BULGARIE</option><option value="LOCATIS">LOCATIS ★</option><option value="MERIO">MERIO</option><option value="MICRO BEAM">MICRO BEAM</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="PFEIFFER">PFEIFFER</option><option value="Proto Process">Proto Process</option><option value="RTSYS">RTSYS</option><option value="SEFRAM">SEFRAM ★</option><option value="SICPA">SICPA</option><option value="SYNOPSIS">SYNOPSIS</option><option value="VIAVI">VIAVI ★</option></select>
   </div>
 
   <!-- Fichier BOM Luminovo -->
@@ -539,11 +539,11 @@
       <span class="drop-icon">📋</span>
       <div class="drop-hint"><strong>Glisser-déposer</strong> ou cliquer pour sélectionner</div>
       <div class="drop-hint" style="margin-top:4px">Formats acceptés : .xlsx, .ods, .csv</div>
-      <div class="filename" id="name-lumi">BOM_codifiee pfeiffer_2026-06-09.xlsx</div>
+      <div class="filename" id="name-lumi">BOM_codifiee-MERIO_2026-06-11 (1).xlsx</div>
     </div>
     <div class="stats-row" id="stats-lumi">
-      <div class="stat"><div class="stat-val" id="lumi-refs">31</div><div class="stat-lbl">Références</div></div>
-      <div class="stat"><div class="stat-val" id="lumi-desig">130</div><div class="stat-lbl">Désignateurs</div></div>
+      <div class="stat"><div class="stat-val" id="lumi-refs">81</div><div class="stat-lbl">Références</div></div>
+      <div class="stat"><div class="stat-val" id="lumi-desig">254</div><div class="stat-lbl">Désignateurs</div></div>
     </div>
   </div>
 
@@ -553,15 +553,15 @@
     <h2>Centroïdes (CMP)</h2>
     <p>Fichier de placement MYCenter (.csv) avec : Repère, X, Y, Rotation, Face, IPN</p>
     <div class="drop-zone loaded" id="drop-cmp" ondragover="handleDragOver(event,&#39;drop-cmp&#39;)" ondragleave="handleDragLeave(&#39;drop-cmp&#39;)" ondrop="handleDrop(event,&#39;cmp&#39;)">
-      <input type="file" accept=".csv,.txt" onchange="handleFileSelect(event,&#39;cmp&#39;)">
+      <input type="file" accept=".csv,.txt,.asc" onchange="handleFileSelect(event,&#39;cmp&#39;)">
       <span class="drop-icon">📍</span>
       <div class="drop-hint"><strong>Glisser-déposer</strong> ou cliquer pour sélectionner</div>
       <div class="drop-hint" style="margin-top:4px">Format : .csv (séparateur tabulation)</div>
-      <div class="filename" id="name-cmp">703100B145-102_000_PLACE_XY.csv</div>
+      <div class="filename" id="name-cmp">Pick___Place_2738-03__2738_V01_.csv</div>
     </div>
     <div class="stats-row" id="stats-cmp">
-      <div class="stat"><div class="stat-val" id="cmp-total">161</div><div class="stat-lbl">Composants</div></div>
-      <div class="stat"><div class="stat-val" id="cmp-smt">161</div><div class="stat-lbl">SMT (TOP+BOT)</div></div>
+      <div class="stat"><div class="stat-val" id="cmp-total">45</div><div class="stat-lbl">Composants</div></div>
+      <div class="stat"><div class="stat-val" id="cmp-smt">45</div><div class="stat-lbl">SMT (TOP+BOT)</div></div>
     </div>
   </div>
 
@@ -590,10 +590,10 @@
 
     <!-- Run -->
   <div class="run-section">
-    <button class="btn-run" id="btn-run" onclick="runProcess()" disabled="">
+    <button class="btn-run" id="btn-run" onclick="runProcess()">
       <span>▶</span> Générer les fichiers
     </button>
-    <div style="font-size:12px; color:var(--muted)" id="run-hint">Chargez les 2 fichiers pour continuer</div>
+    <div style="font-size:12px; color:var(--muted)" id="run-hint">Les 2 fichiers sont chargés — prêt à générer</div>
   </div>
 
   <!-- Résultats -->
@@ -602,10 +602,10 @@
     <h2 style="margin-bottom:16px">Traitement terminé</h2>
 
     <div class="results-grid">
-      <div class="result-stat"><div class="val ok" id="res-matched">146</div><div class="lbl">Composants matchés</div></div>
-      <div class="result-stat"><div class="val warn" id="res-unmatched">15</div><div class="lbl">Non matchés (sans IPN)</div></div>
+      <div class="result-stat"><div class="val ok" id="res-matched">39</div><div class="lbl">Composants matchés</div></div>
+      <div class="result-stat"><div class="val warn" id="res-unmatched">6</div><div class="lbl">Non matchés (sans IPN)</div></div>
       <div class="result-stat"><div class="val" id="res-filtered" style="color:var(--muted)">0</div><div class="lbl">Exclus (NC / THT)</div></div>
-      <div class="result-stat"><div class="val ok" id="res-pnp">161</div><div class="lbl">Lignes PnP CLI</div></div>
+      <div class="result-stat"><div class="val ok" id="res-pnp">45</div><div class="lbl">Lignes PnP CLI</div></div>
     </div>
 
     <div class="section-title">Télécharger</div>
@@ -620,12 +620,12 @@
       <div style="max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:6px">
         <table class="unmatched-table">
           <thead><tr><th>Repère</th><th>IPN CMP</th><th>Face</th></tr></thead>
-          <tbody id="unmatched-tbody"><tr><td>SH1</td><td>—</td><td>TOP</td></tr><tr><td>U2</td><td>—</td><td>BOT</td></tr><tr><td>TP3</td><td>—</td><td>TOP</td></tr><tr><td>TP4</td><td>—</td><td>TOP</td></tr><tr><td>TP5</td><td>—</td><td>TOP</td></tr><tr><td>TP6</td><td>—</td><td>TOP</td></tr><tr><td>TP7</td><td>—</td><td>TOP</td></tr><tr><td>TP8</td><td>—</td><td>TOP</td></tr><tr><td>TP9</td><td>—</td><td>TOP</td></tr><tr><td>TP1</td><td>—</td><td>TOP</td></tr><tr><td>R19</td><td>—</td><td>TOP</td></tr><tr><td>E1</td><td>—</td><td>TOP</td></tr><tr><td>E2</td><td>—</td><td>TOP</td></tr><tr><td>C1</td><td>—</td><td>TOP</td></tr><tr><td>C2</td><td>—</td><td>BOT</td></tr></tbody>
+          <tbody id="unmatched-tbody"><tr><td>C5</td><td>—</td><td>TOP</td></tr><tr><td>C3</td><td>—</td><td>TOP</td></tr><tr><td>FID1</td><td>—</td><td>TOP</td></tr><tr><td>FID2</td><td>—</td><td>TOP</td></tr><tr><td>FID3</td><td>—</td><td>TOP</td></tr><tr><td>J1</td><td>—</td><td>TOP</td></tr></tbody>
         </table>
       </div>
     </div>
 
-    <div class="log" id="log"><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">Chargement : 161 composants centroïdes</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">BOM Luminovo : 146 désignateurs</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-warn">Jointure : 146 matchés, 15 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">PnP CLI : 161 lignes générées</span></div><div class="log-line"><span class="log-time">10:32:27</span><span class="log-ok">BOM PP : 54 références uniques</span></div></div>
+    <div class="log" id="log"><div class="log-line"><span class="log-time">08:34:17</span><span class="log-ok">Chargement : 45 composants centroïdes</span></div><div class="log-line"><span class="log-time">08:34:17</span><span class="log-ok">BOM Luminovo : 39 désignateurs</span></div><div class="log-line"><span class="log-time">08:34:17</span><span class="log-warn">Jointure : 39 matchés, 6 sans correspondance BOM</span></div><div class="log-line"><span class="log-time">08:34:17</span><span class="log-info">Exclus : 0 composants (NC/fiduciaux/THT)</span></div><div class="log-line"><span class="log-time">08:34:17</span><span class="log-ok">PnP CLI : 45 lignes générées</span></div><div class="log-line"><span class="log-time">08:34:17</span><span class="log-ok">BOM PP : 19 références uniques</span></div></div>
   </div>
 
 </main>
@@ -886,11 +886,13 @@ function parseCMP(text, filename) {
       const t = (clean.match(/\t/g)||[]).length;
       const c = (clean.match(/,/g) ||[]).length;
       const s = (clean.match(/;/g) ||[]).length;
+      if (t===0&&c===0&&s===0&&/\s{2,}/.test(clean)) return 'spaces';
       return t>=c&&t>=s ? '\t' : s>c ? ';' : ',';
     }
 
     // ── Splitter en tenant compte des guillemets ──────────────────────────────
     function splitLine(line, sep) {
+      if (sep==='spaces') return line.trim().split(/\s{2,}/).map(c=>c.trim()).filter(c=>c!=='');
       const result=[]; let cur='', inQ=false;
       for (let i=0; i<line.length; i++) {
         const c=line[i];
@@ -1041,6 +1043,29 @@ function parseCMP(text, filename) {
     } else {
       const HDR = /refdes|reference|designator|component|center.x|pos.x|mid.x|symbol.x|center-x|rotation|layer|side|face/i;
 
+      // Détecter format largeur fixe : extraire colonnes par positions dans l'en-tête
+      function parseFixedWidth(headerLine, dataLine) {
+        const colPos = [];
+        const re = /\S+/g; let m;
+        while ((m = re.exec(headerLine)) !== null) colPos.push(m.index);
+        // Extraire chaque colonne selon sa position
+        const cols = [];
+        for (let i=0; i<colPos.length; i++) {
+          const start = colPos[i];
+          const end   = i+1 < colPos.length ? colPos[i+1] : dataLine.length;
+          cols.push(dataLine.substring(start, end).trim());
+        }
+        return cols;
+      }
+
+      function isFixedWidth(headerLine, sep) {
+        // Largeur fixe si le header splitté donne moins de 5 colonnes
+        // mais contient plus de 5 mots-clés
+        const splitCols = splitLine(headerLine, sep).length;
+        const wordCount  = (headerLine.match(/\S+/g)||[]).length;
+        return splitCols < 5 && wordCount >= 5;
+      }
+
       // Trouver l'en-tête : ligne qui matche HDR ET suivie de données
       let headerIdx=-1, sep=',';
 
@@ -1156,8 +1181,10 @@ function parseCMP(text, filename) {
         return;
       }
 
-      const header = splitLine(lines[headerIdx], sep)
-        .map(c => c.toLowerCase().replace(/[^a-z0-9]/g,' ').trim());
+      const fixedWidth = isFixedWidth(lines[headerIdx], sep);
+      const header = fixedWidth
+        ? (lines[headerIdx].match(/\S+/g)||[]).map(c => c.toLowerCase().replace(/[^a-z0-9]/g,' ').trim())
+        : splitLine(lines[headerIdx], sep).map(c => c.toLowerCase().replace(/[^a-z0-9]/g,' ').trim());
 
       function findCol(...pats) {
         return header.findIndex(h => pats.some(p => {
