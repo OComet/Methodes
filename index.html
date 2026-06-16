@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0077)file:///C:/Users/Proto%20Process%20Method/Downloads/mycenter_prep%20(13).html -->
+<!-- saved from url=(0077)file:///C:/Users/Proto%20Process%20Method/Downloads/mycenter_prep%20(15).html -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1247,7 +1247,7 @@ function parseCMP(text, filename) {
 
       for (let i=headerIdx+1; i<lines.length; i++) {
         if (!lines[i].trim()) continue;
-        const cols=splitLine(lines[i],sep);
+        const cols = fixedWidth ? parseFixedWidth(lines[headerIdx], lines[i]) : splitLine(lines[i],sep);
         if (!looksLikeData(cols)) continue;
         const ref=iRef>=0?cols[iRef]:'';
         if (!ref) continue;
