@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0077)file:///C:/Users/Proto%20Process%20Method/Downloads/mycenter_prep%20(13).html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MYCenter Prep — Automatisation BOM + PnP</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="./MYCenter Prep — Automatisation BOM + PnP_files/xlsx.full.min.js.téléchargement"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
 
@@ -522,11 +522,11 @@
     <div class="gsheet-status">
       <div class="gsheet-dot ok" id="gsheet-dot"></div>
       <span class="gsheet-label">Base clients :</span>
-      <span class="gsheet-info" id="gsheet-info">24 clients (données intégrées)</span>
+      <span class="gsheet-info" id="gsheet-info">25 clients (données intégrées)</span>
     </div>
     <div id="gsheet-badges" style="display:flex;gap:8px"><div class="gsheet-client-badge">MERIO</div></div>
     <button onclick="loadClientDB()" title="Rafraîchir depuis GSheet" style="background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);cursor:pointer;padding:3px 8px;font-size:13px">↻</button>
-    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="AMG">AMG</option><option value="ANNECY ELEC">ANNECY ELEC ★</option><option value="ARCEL">ARCEL</option><option value="CEA CADARACHE">CEA CADARACHE</option><option value="CERN">CERN</option><option value="CORDOUAN">CORDOUAN</option><option value="HORIBA">HORIBA</option><option value="ILL">ILL</option><option value="INSAVALOR">INSAVALOR</option><option value="LAPP Annecy">LAPP Annecy</option><option value="LEM (CH)">LEM (CH)</option><option value="LEM TECH FR">LEM TECH FR</option><option value="LEM TECH BULGARIE">LEM TECH BULGARIE</option><option value="LOCATIS">LOCATIS ★</option><option value="MERIO">MERIO</option><option value="MICRO BEAM">MICRO BEAM</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="PFEIFFER">PFEIFFER</option><option value="Proto Process">Proto Process</option><option value="RTSYS">RTSYS</option><option value="SEFRAM">SEFRAM ★</option><option value="SICPA">SICPA</option><option value="SYNOPSIS">SYNOPSIS</option><option value="VIAVI">VIAVI ★</option></select>
+    <select id="client-select" onchange="selectClientManual(this.value)" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--mono);font-size:11px;padding:3px 8px;cursor:pointer"><option value="">— Sélectionner client —</option><option value="AMG">AMG</option><option value="ANNECY ELEC">ANNECY ELEC ★</option><option value="ARCEL">ARCEL</option><option value="CEA CADARACHE">CEA CADARACHE</option><option value="CEA SACLAY">CEA SACLAY</option><option value="CERN">CERN</option><option value="CORDOUAN">CORDOUAN</option><option value="HORIBA">HORIBA</option><option value="ILL">ILL</option><option value="INSAVALOR">INSAVALOR</option><option value="LAPP Annecy">LAPP Annecy</option><option value="LEM (CH)">LEM (CH)</option><option value="LEM TECH FR">LEM TECH FR</option><option value="LEM TECH BULGARIE">LEM TECH BULGARIE</option><option value="LOCATIS">LOCATIS ★</option><option value="MERIO">MERIO</option><option value="MICRO BEAM">MICRO BEAM</option><option value="MINISTERE DES ARMEES">MINISTERE DES ARMEES</option><option value="PFEIFFER">PFEIFFER</option><option value="Proto Process">Proto Process</option><option value="RTSYS">RTSYS</option><option value="SEFRAM">SEFRAM ★</option><option value="SICPA">SICPA</option><option value="SYNOPSIS">SYNOPSIS</option><option value="VIAVI">VIAVI ★</option></select>
   </div>
 
   <!-- Fichier BOM Luminovo -->
@@ -1461,6 +1461,7 @@ AMG	non		Designator,Comment,Layer	virgule	Designator	Center-X(mil)	Center-Y(mil)
 ANNECY ELEC	oui	colonne Equi autorisé en BOM client							
 ARCEL	non	Attention peut etre des ref imposées sur certaines BOM							
 CEA CADARACHE	non								
+CEA SACLAY	non		Altium Designer Pick and Place	spaces	Designator	Center-X(mm)	Center-Y(mm)	Rotation	Layer
 CERN	non								
 CORDOUAN	non								
 HORIBA	non		Altium Designer Pick	virgule	Designator	Center-X(mm)	Center-Y(mm)	Rotation	Layer
