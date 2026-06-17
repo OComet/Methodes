@@ -913,15 +913,21 @@ function parseCMP(text, filename) {
       return hasRef && hasNum;
     }
 
-    const rows = [];
+    let rows = [];
 
     // ════════════════════════════════════════════════════════════════════════
     // STRATÉGIE 0 : Format défini dans la base clients (GSheet)
     // ════════════════════════════════════════════════════════════════════════
     // Client détecté uniquement depuis la BOM Luminovo (pas depuis le CMP)
-    const clientFormat = getClientCMPFormat(state.matchedClient);
+    // Un client peut avoir PLUSIEURS formats définis (plusieurs lignes GSheet) :
+    // on les essaie tous et on garde le premier qui produit des résultats.
+    const clientFormats = state.matchedClient ? getClientCMPFormats(state.matchedClient.nom) : [];
+    let strategyZeroRows = [];
 
-    if (clientFormat && clientFormat.colRef) {
+    for (const clientFormat of clientFormats) {
+      if (!clientFormat.colRef) continue;
+      const tryRows = [];
+
       // Appliquer le format défini explicitement dans la GSheet
       const dbSep = clientFormat.sep.toUpperCase() === 'TAB' ? '\t'
                   : clientFormat.sep === 'virgule' ? ','
@@ -983,7 +989,7 @@ function parseCMP(text, filename) {
         const cols = splitLine(lines[i], dbSep);
         const ref  = cRef>=0 ? cols[cRef] : '';
         if (!ref || !looksLikeData(cols)) continue;
-        rows.push({
+        tryRows.push({
           ref,
           x:    cX>=0    ? parseNum(cols[cX])           : 0,
           y:    cY>=0    ? parseNum(cols[cY])            : 0,
@@ -993,9 +999,19 @@ function parseCMP(text, filename) {
         });
       }
 
-      // Si 0 lignes trouvées avec le format client → fallback détection automatique
+      if (tryRows.length > strategyZeroRows.length) {
+        strategyZeroRows = tryRows;
+      }
+      // Si ce format a déjà donné de bons résultats, pas besoin de tester les suivants
+      if (tryRows.length > 0) break;
+    }
+
+    rows = strategyZeroRows;
+
+    if (clientFormats.length > 0) {
+      // Si aucun format n'a donné de résultats → fallback détection automatique
       if (rows.length === 0) {
-        console.warn('Stratégie 0 : 0 lignes pour', state.matchedClient?.nom, '— fallback détection auto');
+        console.warn('Stratégie 0 : 0 lignes pour', state.matchedClient?.nom, '— fallback détection auto (tous formats testés)');
       } else {
         const smtCount = rows.filter(r => r.face==='TOP'||r.face==='BOT').length;
         state.cmp = { rows, total: rows.length, smt: smtCount };
@@ -1473,6 +1489,7 @@ LEM TECH FR	non
 LEM TECH BULGARIE	non		Altium Designer Pick and Place	virgule	Designator	Center-X(mm)	Center-Y(mm)	Rotation	Layer
 LOCATIS	oui		Designator,Comment,Layer	virgule	Designator	Center-X(mil)	Center-Y(mil)	Rotation	Layer
 MERIO	non		Altium Designer Pick	TAB	Designator	Center-X(mm)	Center-Y(mm)	Rotation	Layer
+MERIO	non	Format alternatif sans entête		TAB	0	2	3		8
 MICRO BEAM	non								
 MINISTERE DES ARMEES	non		Altium Designer Pick	TAB	Designator	Center-X(mm)	Center-Y(mm)	Rotation	Layer
 PFEIFFER	non		Component List Report	TAB	1	2	3	4	5
@@ -1599,18 +1616,27 @@ function showClientBadge(client) {
   }
 }
 
+function getClientCMPFormats(clientNom) {
+  if (!clientNom) return [];
+  // Retourne TOUS les formats définis pour ce client (plusieurs lignes possibles)
+  return state.clientDB
+    .filter(c => c.nom === clientNom && (c.detect || c.colRef))
+    .map(c => ({
+      detect:  c.detect,
+      sep:     c.sep || 'TAB',
+      colRef:  c.colRef,
+      colX:    c.colX,
+      colY:    c.colY,
+      colRot:  c.colRot,
+      colFace: c.colFace,
+    }));
+}
+
+// Compat : ancienne fonction retourne le premier format
 function getClientCMPFormat(client) {
   if (!client) return null;
-  if (!client.detect && !client.colRef) return null;
-  return {
-    detect:  client.detect,
-    sep:     client.sep || 'TAB',
-    colRef:  client.colRef,
-    colX:    client.colX,
-    colY:    client.colY,
-    colRot:  client.colRot,
-    colFace: client.colFace,
-  };
+  const all = getClientCMPFormats(client.nom);
+  return all.length ? all[0] : null;
 }
 
 window.addEventListener('load', loadClientDB);
